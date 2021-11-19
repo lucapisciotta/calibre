@@ -1,5 +1,5 @@
 
-FROM ubuntu:latest
+FROM ubuntu:21.04
 
 ARG calibre_version=5.12.0+dfsg-1
 ARG curl_version=7.74.0-1.3+b1
