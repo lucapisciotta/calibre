@@ -59,13 +59,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./calibre/
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64
           push: true
           tags: lucapisciotta/calibre:latest
-      - name: Update repo description
-        uses: peter-evans/dockerhub-description@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          readme-filepath: calibre/README.md
-          repository: lucapisciotta/calibre

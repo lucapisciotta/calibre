@@ -15,7 +15,8 @@ I've an Amazon kindle and all other project that i tried have no compatibility w
 
 #### Supported architectures
 ------------------------
-My image supports different architecture such as `x86-64`, `arm64`, `armhf`.
+My image actually supports only `x86-64`.
+I'm working on a compatible version with `arm64`, `armhf`.
 
 #### Application Setup
 ------------------------
@@ -64,4 +65,5 @@ Container images are configured using parameters passed at runtime (such as thos
 #### Sources
 ------------------------
 Docker image repository: https://github.com/lucapisciotta/laboratory/tree/main/calibre
+
 Calibre official repository: https://github.com/kovidgoyal/calibre
