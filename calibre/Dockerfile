@@ -19,13 +19,11 @@ RUN set -euv \
         glibc-source \
         python3 \
         python3-pyqt5 \
-        # wget \
     ; ln -s /usr/bin/python3 /usr/bin/python \
     ; curl -sLk -o /srv/linux-installer.sh https://download.calibre-ebook.com/linux-installer.sh \
     ; bash /srv/linux-installer.sh \
-    ; curl -sLk -o  /books/christmascarol.mobi http://www.gutenberg.org/ebooks/46.kindle.noimages \
+    ; curl -sLk -o /books/christmascarol.mobi http://www.gutenberg.org/ebooks/46.kindle.noimages \
     ; calibredb add /books/*.mobi --with-library /books \
-    ; apt-get purge -y wget \
     ; apt-get clean \
     ; rm -rf /var/lib/apt/lists/* \
     ; rm -rf /var/cache/apt \
