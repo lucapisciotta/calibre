@@ -39,6 +39,7 @@ jobs:
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
   build:
+    needs: [linting, security-check]
     runs-on: ubuntu-latest
     environment:
       name: calibre
