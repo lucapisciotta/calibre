@@ -9,21 +9,23 @@ To manage the library, I advise to use calibre client on your machine, in this w
 
 The image is based on the official ubuntu 21.04 and the offical calibre package provided by [Kovid Goyal](https://github.com/kovidgoyal/calibre)
 
-#### Why i chosen to use this package and not calibre-web?
+### Why I chosen to use this package and not calibre-web?
 ------------------------
 I've an Amazon kindle and all other project that i tried have no compatibility with e-Ink display and its browser but, this has it.
 
-#### Supported architectures
+### Supported architectures
 ------------------------
-My image actually supports only `x86-64`.
-I'm working on a compatible version with `arm64`, `armhf`.
+This image supports different architecture: `x86-64`, `arm64`, `arm/v7`, `arm/v6`.
 
-#### Application Setup
+### Application Setup
 ------------------------
 WebUI can be found at `http://your-ip:8085`.
+
+If you want to use a mobile and eReader compatibilty version, `http://your-ip:8085/mobile`.
+
 Initially, you can try this image without an existing library because I've added a sample eBook. When you're ready and you've created your library you can simply pass it to `/books`.
 
-#### Usage
+### Usage
 ------------------------
 Here are some example snippets to help you get started creating a container.
 
@@ -53,7 +55,7 @@ docker run -d \
     --restart unless-stopped \
     lucapisciotta/calibre
 ```
-#### Parameters
+### Parameters
 ------------------------
 Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate <external>:<internal> respectively. For example, -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080 outside the container.
 | Parameter | Function |
@@ -62,7 +64,12 @@ Container images are configured using parameters passed at runtime (such as thos
 |`-e TZ=Europe/Rome` | Specify a timezone to use EG Europe/Rome. |
 |`-v /books` | Where your preexisting calibre database is located. |
 
-#### Sources
+### Known problems
+------------------------
+Whene You start the container it show some errors about Bonjour service and zeroconf configuration but everything works as expected.
+In any case, I'm working to fix also these problems.
+
+### Sources
 ------------------------
 Docker image repository: https://github.com/lucapisciotta/laboratory/tree/main/calibre
 

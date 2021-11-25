@@ -10,55 +10,70 @@ on:
   workflow_dispatch:
 
 jobs:
-  linting:
+  get_tag:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
-      - name: Run hadolint
-        uses: hadolint/hadolint-action@v1.6.0
-        with:
-          dockerfile: ./calibre/Dockerfile
-          ignore: DL3008
-  security-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: docker build -t calibre:local -f calibre/Dockerfile .
-      - name: Run the Anchore scan action itself with GitHub Advanced Security code scanning integration enabled
-        uses: anchore/scan-action@main
-        id: scan
-        with:
-          image: calibre:local
-          acs-report-enable: true
-          fail-build: false
-      - name: Upload Anchore Scan Report
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
-  build:
-    needs: [linting, security-check]
-    runs-on: ubuntu-latest
-    environment:
-      name: calibre
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Build and push
-        uses: docker/build-push-action@v2
-        with:
-          context: ./calibre/
-          platforms: linux/amd64
-          push: true
-          tags: lucapisciotta/calibre:latest
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+  # linting:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout the code
+  #       uses: actions/checkout@v2
+  #     - name: Run hadolint
+  #       uses: hadolint/hadolint-action@v1.6.0
+  #       with:
+  #         dockerfile: ./calibre/Dockerfile
+  #         ignore: DL3008
+  # security-check:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout the code
+  #       uses: actions/checkout@v2
+  #     - name: Build the Docker image
+  #       run: docker build -t calibre:local -f calibre/Dockerfile .
+  #     - name: Run the Anchore scan action itself with GitHub Advanced Security code scanning integration enabled
+  #       uses: anchore/scan-action@main
+  #       id: scan
+  #       with:
+  #         image: calibre:local
+  #         acs-report-enable: true
+  #         fail-build: false
+  #     - name: Upload Anchore Scan Report
+  #       uses: github/codeql-action/upload-sarif@v1
+  #       with:
+  #         sarif_file: ${{ steps.scan.outputs.sarif }}
+  # build:
+  #   needs: [linting, security-check]
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: calibre
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #     - name: Set up QEMU
+  #       uses: docker/setup-qemu-action@v1
+  #     - name: Login to DockerHub
+  #       uses: docker/login-action@v1
+  #       with:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_TOKEN }}
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v1
+  #     - name: Build and push
+  #       uses: docker/build-push-action@v2
+  #       with:
+  #         context: ./calibre/
+  #         platforms: linux/amd64, linux/arm64, linux/arm/v7, linux/arm/v6
+  #         push: true
+  #         tags: lucapisciotta/calibre:latest
+  #     - name: Docker Hub Description
+  #       uses: peter-evans/dockerhub-description@v2
+  #       with:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+  #         repository: lucapisciotta/calibre
+  #         readme-filepath: ./calibre/README.md
