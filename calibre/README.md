@@ -15,7 +15,7 @@ I've an Amazon kindle and all other project that i tried have no compatibility w
 
 ### Supported architectures
 ------------------------
-This image supports different architecture: `x86-64`, `arm64`, `arm/v7`, `arm/v6`.
+This image supports different architecture: `x86-64`, `arm64`, `arm32`.
 
 ### Application Setup
 ------------------------
