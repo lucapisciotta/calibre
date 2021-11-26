@@ -1,15 +1,15 @@
 # lucapisciotta/calibre
 ------------------------
 
-[![CI](https://github.com/lucapisciotta/laboratory/actions/workflows/calibre.yml/badge.svg)](https://github.com/lucapisciotta/laboratory/actions/workflows/calibre.yml)
+[![CI](https://github.com/lucapisciotta/laboratory/actions/workflows/main.yml/badge.svg)](https://github.com/lucapisciotta/laboratory/actions/workflows/main.yml)
 ------------------------
 [Calibre](https://github.com/kovidgoyal/calibre) server is an application to read, download and manage our eBooks.
-In this image i putted in a sample eBook that permit to see how the application works.
+In this image i put in a sample eBook that permit to see how the application works.
 To manage the library, I advise to use calibre client on your machine, in this way you're able to add the tags, download the descriptions and fix the eBook code to show correctly on you eReader.
 
 The image is based on the official ubuntu 21.04 and the offical calibre package provided by [Kovid Goyal](https://github.com/kovidgoyal/calibre)
 
-### Why I chosen to use this package and not calibre-web?
+### Why I have chosen to use this package and not calibre-web?
 ------------------------
 I've an Amazon kindle and all other project that i tried have no compatibility with e-Ink display and its browser but, this has it.
 
@@ -71,6 +71,6 @@ In any case, I'm working to fix also these problems.
 
 ### Sources
 ------------------------
-Docker image repository: https://github.com/lucapisciotta/laboratory/tree/main/calibre
+Docker image repository: https://github.com/lucapisciotta/calibre
 
 Calibre official repository: https://github.com/kovidgoyal/calibre
