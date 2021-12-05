@@ -17,17 +17,18 @@ jobs:
         uses: actions/checkout@v2
       - name: Build the Docker image
         run: docker build -t calibre:local -f ./Dockerfile .
-      - name: Run the Anchore scan action itself with GitHub Advanced Security code scanning integration enabled
-        uses: anchore/scan-action@main
-        id: scan
+      - name: Run Trivy Vulnerability scanner
+        uses: aquasecurity/trivy-action@master
         with:
-          image: calibre:local
-          acs-report-enable: true
-          fail-build: false
-      - name: Upload Anchore Scan Report
+          ignore-unfixed: true
+          image-ref: 'calibre:local'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+      - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
         with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+          sarif_file: 'trivy-results.sarif'
   build:
     needs: [security-check]
     runs-on: ubuntu-latest
