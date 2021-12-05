@@ -10,16 +10,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  linting:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
-      - name: Run hadolint
-        uses: hadolint/hadolint-action@v1.6.0
-        with:
-          dockerfile: ./Dockerfile
-          ignore: DL3008 SC2035
   security-check:
     runs-on: ubuntu-latest
     steps:
@@ -39,7 +29,7 @@ jobs:
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
   build:
-    needs: [linting, security-check]
+    needs: [security-check]
     runs-on: ubuntu-latest
     environment:
       name: calibre
