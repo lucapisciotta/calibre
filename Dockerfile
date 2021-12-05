@@ -53,7 +53,8 @@ RUN set -euv\
         xdg-utils \
         xz-utils \
     ; ln -s /usr/bin/python3 /usr/bin/python \
-    ; curl https://bootstrap.pypa.io/get-pip.py -o- | python \
+    ; curl -sL https://bootstrap.pypa.io/get-pip.py -o get-pyp.py \
+    ; python get-pyp.py \
     ; pip install -U --no-cache-dir \
         apsw \
         bs4 \
@@ -85,4 +86,4 @@ RUN set -euv\
 
 EXPOSE 8085
 
-ENTRYPOINT [ "/usr/bin/calibre-server", "--port=8085", "--enable-local-write", "--log=/dev/stdout", "--access-log=/dev/stdout", "--trusted-ips 192.168.0.0/16,172.16.0.0/12,10.0.0.0/8", "/books" ]
+ENTRYPOINT [ "/usr/bin/calibre-server", "--port=8085", "--enable-local-write", "--log=/dev/stdout", "--access-log=/dev/stdout", "--trusted-ips=192.168.0.0/16,172.16.0.0/12,10.0.0.0/8", "/books" ]
