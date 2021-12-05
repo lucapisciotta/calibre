@@ -36,22 +36,13 @@ RUN set -euv\
         pkg-config \
         pyqt5-dev \
         python3 \
-        python3-apsw \
-        python3-bs4 \
-        python3-css-parser \
-        python3-dateutil \
         python3-dev \
+        python3-dateutil \
         python3-distutils \
         python3-html5-parser \
-        python3-hunspell \
-        python3-lxml \
-        python3-msgpack \
         python3-pil \
-        python3-pyqt5 \
         python3-pyqtbuild \
-        python3-regex \
         python3-sipbuild \
-        python3-zeroconf \
         qconf \
         qt5-qmake \
         qt5-qmake-bin \
@@ -62,6 +53,17 @@ RUN set -euv\
         xdg-utils \
         xz-utils \
     ; ln -s /usr/bin/python3 /usr/bin/python \
+    ; curl https://bootstrap.pypa.io/get-pip.py -o- | python \
+    ; pip install -U --no-cache-dir \
+        apsw \
+        bs4 \
+        css-parser \
+        hunspell \
+        lxml \
+        msgpack \
+        pyqt5 \
+        regex \
+        zeroconf \
     ; curl -L https://github.com/kovidgoyal/calibre/releases/download/v$CALIBRE_RELEASE/calibre-$CALIBRE_RELEASE.tar.xz | tar xvJ \
     ; python3 ./calibre*/setup.py install \
     ; rm -rf /srv/* \
@@ -83,4 +85,4 @@ RUN set -euv\
 
 EXPOSE 8085
 
-ENTRYPOINT [ "/usr/bin/calibre-server", "--port=8085", "--disable-use-bonjour", "--enable-local-write", "--log=/dev/stdout", "--access-log=/dev/stdout", "--trusted-ips 192.168.0.0/16,172.16.0.0/12,10.0.0.0/8", "/books" ]
+ENTRYPOINT [ "/usr/bin/calibre-server", "--port=8085", "--enable-local-write", "--log=/dev/stdout", "--access-log=/dev/stdout", "--trusted-ips 192.168.0.0/16,172.16.0.0/12,10.0.0.0/8", "/books" ]

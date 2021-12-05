@@ -66,11 +66,6 @@ Container images are configured using parameters passed at runtime (such as thos
 |`-e TZ=Europe/Rome` | Specify a timezone to use EG Europe/Rome. |
 |`-v /books` | Where your preexisting calibre database is located. |
 
-### Known problems
-------------------------
-Whene You start the container it show some errors about Bonjour service and zeroconf configuration but everything works as expected.
-In any case, I'm working to fix also these problems.
-
 ### Sources
 ------------------------
 Docker image repository: https://github.com/lucapisciotta/calibre
