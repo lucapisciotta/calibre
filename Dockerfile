@@ -1,6 +1,6 @@
 FROM ubuntu:21.04
 
-ARG CALIBRE_RELEASE=5.33.0
+ARG CALIBRE_RELEASE=5.33.2
 ARG TZ=Europe/Rome
 ENV CALIBRE_RELEASE=${CALIBRE_RELEASE}
 ENV TZ=${TZ}
@@ -20,6 +20,7 @@ RUN set -euv\
         ca-certificates \
         curl \
         glibc-source \
+        libnss-mdns \
         libfreetype-dev \
         libhunspell-dev \
         libhyphen-dev \
@@ -82,4 +83,4 @@ RUN set -euv\
 
 EXPOSE 8085
 
-ENTRYPOINT [ "/usr/bin/calibre-server", "--port=8085", "--access-log=/dev/stdout", "/books" ]
+ENTRYPOINT [ "/usr/bin/calibre-server", "--port=8085", "--disable-use-bonjour", "--enable-local-write", "--log=/dev/stdout", "--access-log=/dev/stdout", "--trusted-ips 192.168.0.0/16,172.16.0.0/12,10.0.0.0/8", "/books" ]

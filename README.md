@@ -11,7 +11,7 @@ The image is based on the official ubuntu 21.04 and the offical calibre package 
 
 ### Why I have chosen to use this package and not calibre-web?
 ------------------------
-I've an Amazon kindle and all other project that i tried have no compatibility with e-Ink display and its browser but, this has it.
+I've an Amazon kindle and all other projects that i tried have no compatibility with e-Ink display and its browser but, this has it.
 
 ### Supported architectures
 ------------------------
@@ -24,6 +24,8 @@ WebUI can be found at `http://your-ip:8085`.
 If you want to use a mobile and eReader compatibilty version, `http://your-ip:8085/mobile`.
 
 Initially, you can try this image without an existing library because I've added a sample eBook. When you're ready and you've created your library you can simply pass it to `/books`.
+
+I've enabled the function to add new ebooks directly from the WebUI but this is available only from the same local network (With an IP in these subnets `192.168.0.0/16`, `172.16.0.0/12` and `10.0.0.0/8`)
 
 ### Usage
 ------------------------
@@ -60,7 +62,7 @@ docker run -d \
 Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate <external>:<internal> respectively. For example, -p 8080:80 would expose port 80 from inside the container to be accessible from the host's IP on port 8080 outside the container.
 | Parameter | Function |
 | :---: | :---: |
-|`-p 8085` | WebUI |
+|`-p 8085:8085` | WebUI |
 |`-e TZ=Europe/Rome` | Specify a timezone to use EG Europe/Rome. |
 |`-v /books` | Where your preexisting calibre database is located. |
 
