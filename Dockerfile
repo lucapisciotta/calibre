@@ -36,11 +36,19 @@ RUN set -euv\
         pkg-config \
         pyqt5-dev \
         python3 \
+        python3-apsw \
+        python3-bs4 \
+        python3-css-parser \
+        python3-hunspell \
+        python3-lxml \
+        python3-msgpack \
+        python3-regex \
         python3-dev \
         python3-dateutil \
         python3-distutils \
         python3-html5-parser \
         python3-pil \
+        python3-pyqt5 \
         python3-pyqtbuild \
         python3-sipbuild \
         qconf \
@@ -56,14 +64,6 @@ RUN set -euv\
     ; curl -sL https://bootstrap.pypa.io/get-pip.py -o get-pyp.py \
     ; python get-pyp.py \
     ; pip install -U --no-cache-dir \
-        apsw \
-        bs4 \
-        css-parser \
-        hunspell \
-        lxml \
-        msgpack \
-        pyqt5 \
-        regex \
         zeroconf \
     ; curl -L https://github.com/kovidgoyal/calibre/releases/download/v$CALIBRE_RELEASE/calibre-$CALIBRE_RELEASE.tar.xz | tar xvJ \
     ; python3 ./calibre*/setup.py install \
