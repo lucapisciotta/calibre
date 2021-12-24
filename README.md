@@ -7,7 +7,7 @@
 In this image i put in a sample eBook that permit to see how the application works.
 To manage the library, I advise to use calibre client on your machine, in this way you're able to add the tags, download the descriptions and fix the eBook code to show correctly on you eReader.
 
-The image is based on the official ubuntu 21.04 and the offical calibre package provided by [Kovid Goyal](https://github.com/kovidgoyal/calibre)
+The image is based on the official ubuntu 22.04 and the offical calibre package provided by [Kovid Goyal](https://github.com/kovidgoyal/calibre)
 
 ### Why I have chosen to use this package and not calibre-web?
 ------------------------
