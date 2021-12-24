@@ -43,12 +43,12 @@ services:
         image: lucapisciotta/calibre
         container_name: calibre
         environment:
-            - ADMIN_PASSWORD=yourpassword  # Optional, you need to add it only if you want to change the default password in the example database.
-            - ENABLE_AUTH=true  # Optional, you need to add it only if you need the authentication.
+            - ADMIN_PASSWORD=yourpassword
+            - ENABLE_AUTH=true
             - TZ=Europe/Rome
         volumes:
             - /path/to/calibre/library:/books
-            - /path/to/your/users/database:/srv/calibre/users.sqlite  # Optional, you need to add it only if you want to pass your custom users database
+            - /path/to/your/users/database:/srv/calibre/users.sqlite
         ports:
             - 8085:8085
         restart: unless-stopped
@@ -57,12 +57,12 @@ services:
 ```
 docker run -d \
     --name=calibre \
-    -e ADMIN_PASSWORD=yourpassword  \  # Optional, you need to add it only if you want to change the default password in the example database.
-    -e ENABLE_AUTH=true  \  # Optional, you need to add it only if you need the authentication
+    -e ADMIN_PASSWORD=yourpassword  \
+    -e ENABLE_AUTH=true  \
     -e TZ=Europe/Rome \
     -p 8085:8085 \
     -v /path/to/calibre/library:/books \
-    -v /path/to/your/users/database:/srv/calibre/users.sqlite \  # Optional, you need to add it only if you want to pass your custom users database
+    -v /path/to/your/users/database:/srv/calibre/users.sqlite \
     --restart unless-stopped \
     lucapisciotta/calibre
 ```
