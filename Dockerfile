@@ -22,7 +22,8 @@ RUN set -euv\
         curl \
         xz-utils \
         python3-pyqt5 \
-    ; CPU_ARCHITECTURE="$(lscpu | grep Architecture | awk '{print $2}')" \
+    ; CPU_ARCHITECTURE="$(lscpu | grep Architecture | awk '{print $2}')" && echo $CPU_ARCHITECTURE \
+    ; if 'x86_64' != "${CPU_ARCHITECTURE}" then CPU_ARCHITECTURE='i686' fi \
     ; curl -sLk -o calibre.txz "https://github.com/kovidgoyal/calibre/releases/download/v$CALIBRE_VERSION/calibre-$CALIBRE_VERSION-$CPU_ARCHITECTURE.txz" \
     ; tar xf calibre.txz -C calibre \
     ; PATH=$PATH:/srv/calibre \
