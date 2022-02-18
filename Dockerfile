@@ -25,7 +25,7 @@ RUN set -euv\
     ; CPU_ARCHITECTURE="$(lscpu | grep Architecture | awk '{print $2}')" \
     ; if [ 'x86_64' != "${CPU_ARCHITECTURE}" ] ; then CPU_ARCHITECTURE='i686' ; fi \
     ; curl -sLk -o calibre.txz "https://github.com/kovidgoyal/calibre/releases/download/v$CALIBRE_VERSION/calibre-$CALIBRE_VERSION-$CPU_ARCHITECTURE.txz" \
-    ; tar xf calibre.txz -C calibre \
+    ; tar xf calibre.txz -C /srv/calibre \
     ; PATH=$PATH:/srv/calibre \
     ; curl -sLk -o /books/christmascarol.mobi http://www.gutenberg.org/ebooks/46.kindle.noimages \
     ; calibredb add /books/*.mobi --with-library /books \
