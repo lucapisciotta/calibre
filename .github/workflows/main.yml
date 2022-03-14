@@ -31,7 +31,7 @@ jobs:
     needs: [security-check]
     runs-on: ubuntu-latest
     env:
-      TAG_NAME: 5.37.0
+      CALIBRE_VERSION: 5.38.0
     environment:
       name: calibre
     steps:
@@ -54,7 +54,7 @@ jobs:
           push: true
           tags: |
             lucapisciotta/calibre:latest
-            lucapisciotta/calibre:${{ env.TAG_NAME }}
+            lucapisciotta/calibre:${{ env.CALIBRE_VERSION }}
       - name: Docker Hub Description
         uses: peter-evans/dockerhub-description@v2
         with:

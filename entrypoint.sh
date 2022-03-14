@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 function create_user_db {
-    /srv/calibre/calibre-server \
+    /usr/bin/calibre-server \
         --userdb /srv/calibre/users.sqlite \
         --manage-users add admin "${ADMIN_PASSWORD}"
 }
 
 if "${ENABLE_AUTH}"; then
     if [ -f /srv/calibre/users.sqlite ]; then
-        /srv/calibre/calibre-server \
+        /usr/bin/calibre-server \
             --enable-auth \
             --userdb /srv/calibre/users.sqlite \
             --port=8085 \
@@ -19,7 +19,7 @@ if "${ENABLE_AUTH}"; then
             /books
     else
         create_user_db
-        /srv/calibre/calibre-server \
+        /usr/bin/calibre-server \
             --enable-auth \
             --userdb /srv/calibre/users.sqlite \
             --port=8085 \
@@ -30,7 +30,7 @@ if "${ENABLE_AUTH}"; then
             /books
     fi
 else
-    /srv/calibre/calibre-server \
+    /usr/bin/calibre-server \
         --port=8085 \
         --enable-local-write \
         --log=/dev/stdout \
