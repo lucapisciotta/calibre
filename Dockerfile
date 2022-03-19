@@ -1,4 +1,4 @@
-FROM debian:bookworm
+FROM debian:unstable
 
 ARG ADMIN_PASSWORD="ChangeMe!"
 ARG ENABLE_AUTH=false
