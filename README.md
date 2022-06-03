@@ -42,6 +42,7 @@ services:
     calibre:
         image: lucapisciotta/calibre
         container_name: calibre
+        user: 1002:1002
         environment:
             - ADMIN_PASSWORD=yourpassword
             - ENABLE_AUTH=true
@@ -61,6 +62,7 @@ docker run -d \
     -e ENABLE_AUTH=true  \
     -e TZ=Europe/Rome \
     -p 8085:8085 \
+    -u 1002:1002 \
     -v /path/to/calibre/library:/books \
     -v /path/to/your/users/database:/srv/calibre/users.sqlite \
     --restart unless-stopped \
@@ -72,8 +74,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | Parameter | Function |
 | :---: | :---: |
 | `-p 8085:8085` | WebUI |
-| `-e PUID=1000` | for UserID - see below for explanation |
-| `-e PGID=1000` | for GroupID - see below for explanation |
+| `-u USER_ID:GROUP_ID` | **Optional** - You can define custom user ID and group ID to fit your volumes permissions |
 | `-e ADMIN_PASSWORD=yourpassword` | **Optional** - You need to add it only if you want to change the default password in the example database. |
 | `-e ENABLE_AUTH` | **Optional** -  you need to add it only if you need the authentication. |
 | `-e TZ=Europe/Rome` | Specify a timezone to use Europe/Rome or the timezone that you prefer. |
@@ -82,9 +83,9 @@ Container images are configured using parameters passed at runtime (such as thos
 
 ### User / Group Identifiers
 ------------------------
-When using volumes (`-v` flags) permissions issues can arise between the host OS and the container, to avoid this issue you can specify the user `PUID` and group `PGID`.
+When using volumes (`-v` flags) permissions issues can arise between the host OS and the container, to avoid this issue you can specify the user and group IDs.
 Ensure any volume directories on the host are owned by the same user you specify and any permissions issues will vanish like magic.
-In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as below:
+To find yours use `id user` as below:
 
 ```bash
   $ id username
