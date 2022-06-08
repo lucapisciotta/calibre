@@ -39,16 +39,18 @@ RUN set -euv \
     ; rm -rf /var/lib/apt/lists/* \
     ; rm -rf /var/cache/apt \
     ; mkdir /books \
+    ; mkdir /srv/calibre \
     ; groupadd -g 1001 calibre \
     ; useradd -d /books -g calibre -u 1001 calibre \
     ; chown -R calibre:calibre /books \
+    ; chown -R calibre:calibre /srv/calibre \
 ;
 
 RUN set -euv \
     ; USER=calibre \
     ; GROUP=calibre \
     ; mkdir -p /etc/fixuid \
-    ; printf "user: $USER\ngroup: $GROUP\npaths:\n  - /\n  - /books\n  - /srv" > /etc/fixuid/config.yml \
+    ; printf "user: $USER\ngroup: $GROUP\npaths:\n  - /\n  - /books\n  - /srv\n  - /srv/calibre" > /etc/fixuid/config.yml \
 ;
 
 COPY --from=fixidBuilder /srv/fixuid/fixuid /usr/local/bin/
