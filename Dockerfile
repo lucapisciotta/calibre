@@ -6,9 +6,9 @@ RUN set -vue \
     ; apk add --no-cache git openssh-client shadow \
 ;
 
-ARG FIXUID_VERSION=v0.5.1
+ARG FIXUID_VERSION=v0.5.2
 RUN set -vue \
-    ; git clone --single-branch --branch ${FIXUID_VERSION} https://github.com/boxboat/fixuid.git \
+    ; git clone --single-branch --branch ${FIXUID_VERSION} https://github.com/lucapisciotta/fixuid.git \
     ; cd fixuid \
     ; ./build.sh \
     ; chown root:root /srv/fixuid/fixuid \
