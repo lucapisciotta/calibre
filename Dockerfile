@@ -58,8 +58,9 @@ COPY --chown=calibre:calibre entrypoint.sh /srv/
 
 USER calibre:calibre
 
+COPY ./making-a-realistic-publishing-schedule.mobi /books/
+
 RUN set -euv \
-    ; curl -sLk -o /books/book.mobi https://www.smashwords.com/books/download/1136687/4/latest/0/0/Making-a-Realistic-Publishing-Schedule.mobi \
     ; calibredb add /books/*.mobi --with-library /books \
 ;
 
