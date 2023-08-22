@@ -31,7 +31,7 @@ jobs:
     needs: [security-check]
     runs-on: ubuntu-latest
     env:
-      CALIBRE_VERSION: 6.24.0
+      CALIBRE_VERSION: 6.25.0
     environment:
       name: calibre
     steps:
