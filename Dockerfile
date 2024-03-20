@@ -1,4 +1,4 @@
-FROM golang:1.18-alpine AS fixidBuilder
+FROM golang:alpine AS fixidBuilder
 
 WORKDIR /srv
 
